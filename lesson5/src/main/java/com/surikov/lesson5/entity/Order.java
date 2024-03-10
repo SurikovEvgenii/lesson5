@@ -5,12 +5,12 @@ import java.util.Date;
 public class Order{
     int id;
     int number_order;
-    Date date;
+    String  date;
 
     public Order() {
     }
 
-    public Order(int id, int number_order, Date date) {
+    public Order(int id, int number_order, String date) {
         this.id = id;
         this.number_order = number_order;
         this.date = date;
@@ -24,19 +24,19 @@ public class Order{
         this.id = id;
     }
 
-    public int getNumber_order() {
+    public int getNumberOrder() {
         return number_order;
     }
 
-    public void setNumber_order(int number_order) {
+    public void setNumberOrder(int number_order) {
         this.number_order = number_order;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

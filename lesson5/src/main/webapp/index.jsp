@@ -20,12 +20,14 @@
                     <h5 class="card-title"><%=product.getName()%></h5>
                     <p class="card-text"><%=product.getDescription()%></p>
                     <form action="/cartServlet" method="POST">
-                        <input type="number" class="form-control" id="inputCount" min="0" name="count" placeholder="Количество">
+                        <input type="number" class="form-control" id="inputCount" min="1" value="1" name="count" placeholder="Количество">
                         <br>
+                        <input type="number" name="productId" hidden value="<%=product.getId()%>">
                         <input type="submit" class="btn btn-primary" value="В корзину">
+
                         <a class="btn btn-secondary"><b><%=product.getPrice()%> РУБ.</b></a>
                     </form>
-                    <a hidden><%=product.getId()%></a>
+
                 </div>
             </div>
         <%}%>

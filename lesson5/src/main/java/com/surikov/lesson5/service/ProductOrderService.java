@@ -1,6 +1,7 @@
 package com.surikov.lesson5.service;
 
 import com.surikov.lesson5.DbManager;
+import com.surikov.lesson5.entity.Cart;
 import com.surikov.lesson5.entity.ProductOrder;
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,8 +12,8 @@ public class ProductOrderService {
     public void insert(ProductOrder productOrder){
         try (Connection connection = DbManager.createConnection();
              PreparedStatement statement = connection.prepareStatement(SQL_INSERT)) {
-            statement.setInt(1, productOrder.getProduct_id());
-            statement.setInt(2, productOrder.getOrder_id());
+            statement.setInt(1, productOrder.getProductId());
+            statement.setInt(2, productOrder.getOrderId());
             statement.setInt(3, productOrder.getCount());
             statement.executeUpdate();
 
@@ -42,4 +43,5 @@ public class ProductOrderService {
 
         return productOrders;
     }
+
 }

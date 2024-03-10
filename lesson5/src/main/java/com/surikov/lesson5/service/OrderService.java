@@ -11,8 +11,8 @@ public class OrderService {
     public void insert(Order order){
         try (Connection connection = DbManager.createConnection();
              PreparedStatement statement = connection.prepareStatement(SQL_INSERT)) {
-            statement.setInt(1, order.getNumber_order());
-            statement.setDate(2, (Date)order.getDate());
+            statement.setInt(1, order.getNumberOrder());
+            statement.setString(2, order.getDate());
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -31,7 +31,7 @@ public class OrderService {
             while (resultSet.next()) {
                 int id = resultSet.getInt(1);
                 int numberOrder = resultSet.getInt(2);
-                Date date = resultSet.getDate(3);
+                String date = resultSet.getString(3);
                 orders.add(new Order(id,numberOrder,date));
             }
 
@@ -40,5 +40,22 @@ public class OrderService {
         }
 
         return orders;
+    }
+
+    public int getId(){
+
+        //staticTest();
+        List<Order> orders = new ArrayList<>();
+
+        try (Connection connection = DbManager.createConnection();
+             Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery("SELECT MAX(id) FROM orders");
+
+            resultSet.next();
+            return resultSet.getInt(1);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

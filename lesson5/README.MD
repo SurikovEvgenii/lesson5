@@ -12,7 +12,9 @@
 
 ### Docker
 
-1. Запустить файл docker-compose.yaml
+1. Запустить Docker
+2. В ресурсах выборать docker-compose;
+3. Запустить файл docker-compose.yaml
 
 ### База данных - POSTGRES 16
 
