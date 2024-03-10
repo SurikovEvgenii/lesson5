@@ -1,7 +1,6 @@
 package com.surikov.lesson5;
 
 import com.surikov.lesson5.service.CartService;
-import jakarta.servlet.DispatcherType;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

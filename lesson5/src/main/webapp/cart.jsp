@@ -1,5 +1,3 @@
-<%@ page import="com.surikov.lesson5.service.ProductOrderService" %>
-<%@ page import="com.surikov.lesson5.service.ProductService" %>
 <%@ page import="com.surikov.lesson5.entity.Cart" %>
 <%@ page import="com.surikov.lesson5.service.CartService" %>
 <%@ page import="java.util.List" %>

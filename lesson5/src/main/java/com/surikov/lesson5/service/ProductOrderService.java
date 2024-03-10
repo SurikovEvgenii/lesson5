@@ -1,7 +1,6 @@
 package com.surikov.lesson5.service;
 
 import com.surikov.lesson5.DbManager;
-import com.surikov.lesson5.entity.Cart;
 import com.surikov.lesson5.entity.ProductOrder;
 import java.sql.*;
 import java.util.ArrayList;

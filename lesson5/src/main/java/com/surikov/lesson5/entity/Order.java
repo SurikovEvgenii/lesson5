@@ -1,7 +1,5 @@
 package com.surikov.lesson5.entity;
 
-import java.util.Date;
-
 public class Order{
     int id;
     int number_order;
