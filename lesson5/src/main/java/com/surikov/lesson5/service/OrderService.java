@@ -2,18 +2,33 @@ package com.surikov.lesson5.service;
 
 import com.surikov.lesson5.DbManager;
 import com.surikov.lesson5.entity.Order;
+import com.surikov.lesson5.entity.ProductOrder;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OrderService {
-    private static final String SQL_INSERT="INSERT INTO orders(number_order, date) values(?,?)";
-    public void insert(Order order){
-        try (Connection connection = DbManager.createConnection();
-             PreparedStatement statement = connection.prepareStatement(SQL_INSERT)) {
+    private static final String SQL_INSERT1="INSERT INTO orders(number_order, date) values(?,?)";
+    private static final String SQL_INSERT2="INSERT INTO products_order(product_id, order_id, count) values(?,?,?)";
+    public void insert(Order order, ProductOrder productOrder){
+        try (Connection connection = DbManager.createConnection()) {
+            connection.setAutoCommit(false);
+
+            PreparedStatement statement = connection.prepareStatement(SQL_INSERT1);
             statement.setInt(1, order.getNumberOrder());
             statement.setString(2, order.getDate());
-            statement.executeUpdate();
+            statement.addBatch();
+
+            statement = connection.prepareStatement(SQL_INSERT2);
+            statement.setInt(1, productOrder.getProductId());
+            statement.setInt(2, productOrder.getOrderId());
+            statement.setInt(3, productOrder.getCount());
+            statement.addBatch();
+
+            statement.executeBatch();
+
+            connection.setAutoCommit(true);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
