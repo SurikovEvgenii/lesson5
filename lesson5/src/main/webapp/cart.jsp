@@ -18,7 +18,27 @@
         CartService cartService = new CartService();
     %>
     <% int sum = 0;%>
-    <% cartList = cartService.getCart(1); %>
+
+    <form method="post" action="/select-show">
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Введите номер заказа: </span>
+        <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="orderId">
+        <input class="btn btn-danger" type="submit" value="Показать">
+    </div>
+    </form>
+
+    <%
+        int id = 0;
+        String check = request.getParameter("orderId");
+
+        if(check == null){
+            id = 1;
+            cartList = cartService.getCart(id);
+        } else {
+            id = Integer.parseInt(check);
+            cartList = cartService.getCart(id);
+        }
+    %>
 
     <div>
         <div class="row row-cols-1 row-cols-md-2 g-4">
@@ -33,15 +53,27 @@
                         <h5 class="card-text">Итого:</h5>
                         <a class="btn btn-secondary"><b><%= cart.getCount()*cart.getPrice()%> РУБ.</b></a>
                         <div style="display: inline-grid;">
-                        <form action="/delete-product-servlet" method="POST">
-                            <label>
-                                <input hidden name="orderId" value="<%=cart.getOrderId()%>">
-                            </label>
-                            <label>
-                                <input hidden name="productId" value="<%=cart.getProductId()%>">
-                            </label>
-                            <input class="btn btn-danger" type="submit" value="Удалить">
-                        </form>
+
+                            <form action="/delete-product-servlet" method="POST">
+                                <label>
+                                    <input hidden name="orderId" value="<%=cart.getOrderId()%>">
+                                </label>
+                                <label>
+                                    <input hidden name="productId" value="<%=cart.getProductId()%>">
+                                </label>
+                                <input class="btn btn-danger" type="submit" value="Удалить">
+                            </form>
+
+                            <form action="/select-show" method="GET">
+                                <label>
+                                    <input hidden name="orderId" value="<%=cart.getOrderId()%>">
+                                </label>
+                                <label>
+                                    <input hidden name="productId" value="<%=cart.getProductId()%>" >
+                                </label>
+                                <input class="btn btn-danger" type="submit" value="Получить номера заказов">
+                            </form>
+
                         </div>
 
                         <% sum += cart.getCount()*cart.getPrice(); %>
