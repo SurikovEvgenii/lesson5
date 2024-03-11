@@ -49,8 +49,9 @@ public class AddCartServlet extends HttpServlet {
         productOrder.setOrderId(orderService.getId());
         productOrder.setCount(Integer.parseInt(req.getParameter("count")));
 
-        orderService.insert(order);
-        productOrderService.insert(productOrder);
+
+        orderService.insert(order,productOrder);
+
 
         resp.sendRedirect("/cart.jsp");
     }
