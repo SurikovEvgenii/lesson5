@@ -9,6 +9,20 @@ public class Cart {
     int productId;
     int orderId;
 
+    public Cart(int numberOrder) {
+        this.numberOrder = numberOrder;
+    }
+
+    public Cart(String name, String description, int count, int price, int productId, int orderId, int numberOrder) {
+        this.name = name;
+        this.description = description;
+        this.count = count;
+        this.price = price;
+        this.productId = productId;
+        this.orderId = orderId;
+        this.numberOrder = numberOrder;
+    }
+
     public Cart(String name, String description, int count, int price, int productId, int orderId) {
         this.name = name;
         this.description = description;
@@ -88,4 +102,6 @@ public class Cart {
     public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
+
+
 }
