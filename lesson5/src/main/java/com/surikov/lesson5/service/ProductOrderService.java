@@ -7,10 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductOrderService {
-    private static final String SQL_INSERT="INSERT INTO products_order(product_id, order_id, count) values(?,?,?)";
+
+    /*private static final String SQL_INSERT="INSERT INTO products_order(product_id, order_id, count) values(?,?,?)";
     public void insert(ProductOrder productOrder){
         try (Connection connection = DbManager.createConnection();
              PreparedStatement statement = connection.prepareStatement(SQL_INSERT)) {
+
             statement.setInt(1, productOrder.getProductId());
             statement.setInt(2, productOrder.getOrderId());
             statement.setInt(3, productOrder.getCount());
@@ -19,7 +21,8 @@ public class ProductOrderService {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
+    }*/
+
     public List<ProductOrder> getAll(){
 
         //staticTest();
