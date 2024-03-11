@@ -52,4 +52,24 @@ public class CartService {
             throw new RuntimeException(e);
         }
     }
+
+    public List<Cart> getProductCart(int productIdReq) {
+
+        String query = "SELECT orders.number_order FROM orders JOIN products_order ON orders.id = products_order.order_id  WHERE product_id =" + productIdReq;
+        List<Cart> cartList = new ArrayList<>();
+
+        try (Connection connection = DbManager.createConnection();
+             Statement statement = connection.createStatement()) {
+
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                int numberOrder = resultSet.getInt(1);
+                cartList.add(new Cart(numberOrder));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return cartList;
+    }
 }
